@@ -28,6 +28,12 @@ app.use(session({
   resave: false }
 ));
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // use JWT auth to secure the api
 app.use('/api', expressJwt({ secret: process.env.SECRET }).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
 
