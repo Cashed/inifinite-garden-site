@@ -14,7 +14,7 @@
       replace: true,
       templateUrl: 'app/javascripts/journal/journal.html',
       link: function(scope, element, attrs) {
-        const flipbook = $('#flipbook');
+        var flipbook = $('#flipbook');
 
         flipbook.turn({
           width: '100%',
