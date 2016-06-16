@@ -1,0 +1,37 @@
+<div class='content'>
+  <!-- ************* navbar/menu ************* -->
+  <section class='menu container-fluid'>
+    <div class='row'>
+      <div class='col-md-5'>
+        <a href='/'>
+          <img class ='logo' src='app/images/logo.png'/></a>
+      </div>
+      <div class='user-name col-md-offset-4 col-md-2'>
+        <p id="name">{{ home.user.username }}</p>
+        <p>Account</p>
+      </div>
+      <div class='user-avatar col-md-1'>
+        <img ng-src='{{ home.user.avatar }}' alt='user avatar picture'>
+      </div>
+    </div>
+  </section>
+    <!-- ************* main content ************* -->
+  <section class='main container-fluid'>
+    <div class='row'>
+      <div class='game-view col-md-7'>
+        game view
+      </div>
+      <div class='communication-content col-md-5' style='padding: 0;'>
+        <bulletin class='row' user='home.user'></bulletin>
+        <journal class='row' user='home.user'></journal>
+      </div>
+    </div>
+  </section>
+  <footer class='container-fluid'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <p>&copy 2016 infinite garden</p>
+      </div>
+    </div>
+  </footer>
+</div>
