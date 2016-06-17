@@ -43,9 +43,9 @@
         .then(handleSuccess, handleError);
     }
 
-    function deleteUser(id) {
+    function deletePicture(id) {
       return $http
-        .delete('/api/users' + id)
+        .delete('/api/pictures/delete' + id)
         .then(handleSuccess, handleError);
     }
 
