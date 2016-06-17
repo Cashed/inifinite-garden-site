@@ -40,6 +40,7 @@ function getAllbyUser(req, res, next) {
 }
 
 function addPicture(req, res, next) {
+  console.log(req.body + ' ' + req.user.sub);
   Picture.addPic(req.body, (error, newPic) => {
     if (error) {
       res.status(400).send(error);
