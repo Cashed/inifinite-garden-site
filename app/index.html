@@ -30,9 +30,12 @@
   </head>
   <body>
     <script type='text/javascript'>
+      var data = {};
+
       window.addEventListener('message', function(event) {
         console.log(event.data);
-        window.service.addPicture(event.data);
+        data = event.data;
+
       });
     </script>
 
