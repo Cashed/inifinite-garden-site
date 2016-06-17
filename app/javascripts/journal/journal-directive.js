@@ -24,7 +24,7 @@
 
         flipbook.turn('peel', 'br');
 
-        const entries = [{
+        var entries = [{
           picture: 'https://s-media-cache-ak0.pinimg.com/736x/07/f3/a5/07f3a5acaa4fa8a0b0194c233e4c1c09.jpg',
           title: '',
           description: '',
@@ -46,18 +46,18 @@
 
   function addPage(flipbook, entry) {
     // build page
-    const newEntry = $('<div class="journal-entry">');
-    const picWrapper = $(`<div class="entry-pic" style="background-image: url(${entry.picture})">`);
-    const picture = $('<img src="app/images/polaroid-frame.png" alt="journal screenshot">');
+    var newEntry = $('<div class="journal-entry">');
+    var picWrapper = $(`<div class="entry-pic" style="background-image: url(${entry.picture})">`);
+    var picture = $('<img src="app/images/polaroid-frame.png" alt="journal screenshot">');
 
     picWrapper.append(picture);
     newEntry.append(picWrapper);
 
     // add page to flipbook
-    const pageCount = flipbook.turn('pages') + 1;
-    const positionOfAddition = pageCount;
-    const page = $(newEntry);
-    const backPage = $('<div class="hard inside-cover">');
+    var pageCount = flipbook.turn('pages') + 1;
+    var positionOfAddition = pageCount;
+    var page = $(newEntry);
+    var backPage = $('<div class="hard inside-cover">');
 
     flipbook.turn('addPage', page, positionOfAddition);
     flipbook.turn('addPage', backPage, positionOfAddition + 1);
