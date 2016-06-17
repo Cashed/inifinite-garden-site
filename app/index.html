@@ -30,12 +30,26 @@
   </head>
   <body>
     <script type='text/javascript'>
-      var relayImgurData = function(data) {
-        console.log(typeof data + ' ' + data);
-        console.log(JSON.parse(data));
-        // addPicture(JSON.parse(data));
-      }
-      console.log(window.relayImgurData);
+      // var relayImgurData = function(data) {
+      //   console.log(typeof data + ' ' + data);
+      //   console.log(JSON.parse(data));
+      //   // addPicture(JSON.parse(data));
+      // }
+      // console.log(window.relayImgurData);
+      window.addEventListener('message', function(event) {
+
+        // IMPORTANT: Check the origin of the data!
+        if (~event.origin.indexOf('https://s3-us-west-2.amazonaws.com/')) {
+            // The data has been sent from your site
+            // The data sent with postMessage is stored in event.data
+            console.log(event.data);
+        } else {
+          console.log('no bueno');
+            // The data hasn't been sent from your site!
+            // Be careful! Do not use it.
+            return;
+        }
+      });
     </script>
 
     <!-- *********** view ************ -->
