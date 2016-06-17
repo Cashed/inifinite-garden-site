@@ -50,6 +50,10 @@
     var picWrapper = $(`<div class="entry-pic" style="background-image: url(${entry.picture})">`);
     var picture = $('<img src="app/images/polaroid-frame.png" alt="journal screenshot">');
 
+    newEntry.on('click', function() {
+      console.log('clicked');
+    });
+
     picWrapper.append(picture);
     newEntry.append(picWrapper);
 
