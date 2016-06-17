@@ -24,18 +24,12 @@
     <script src='javascripts/journal/journal-directive.js'></script>
     <script src='javascripts/bulletin/bulletin-directive.js'></script>
     <script src='javascripts/services/picture-service.js'></script>
-    <script type='text/javascript'>
-      var relayImgurData = function(data) {
-        console.log(typeof data + ' ' + data);
-        console.log(JSON.parse(data));
-        addPicture(JSON.parse(data));
-      }
-    </script>
 
     <!-- ************ superstatic ************ -->
     <base href='/'/>
   </head>
   <body>
+
     <!-- *********** view ************ -->
     <div ui-view ></div>
     <script src='app/javascripts/webGLRelay.js'></script>
