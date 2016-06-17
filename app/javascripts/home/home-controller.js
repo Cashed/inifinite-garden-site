@@ -5,7 +5,7 @@
     .module('InfiniteGarden')
     .controller('Home', Home);
 
-  Home.$inject = ['$scope', '$window' 'UserService', 'PictureService'];
+  Home.$inject = ['$scope', '$window', 'UserService', 'PictureService'];
 
   function Home($scope, $window, UserService, PictureService) {
     const vm = this;
