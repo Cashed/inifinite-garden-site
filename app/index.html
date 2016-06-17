@@ -37,18 +37,18 @@
       // }
       // console.log(window.relayImgurData);
       window.addEventListener('message', function(event) {
-
+        console.log(event);
         // IMPORTANT: Check the origin of the data!
-        if (~event.origin.indexOf('https://s3-us-west-2.amazonaws.com/')) {
+        // if (~event.origin.indexOf('https://s3-us-west-2.amazonaws.com/')) {
             // The data has been sent from your site
             // The data sent with postMessage is stored in event.data
-            console.log(event.data);
-        } else {
-          console.log('no bueno');
+        console.log(event.data);
+        // } else {
+        //   console.log('no bueno');
             // The data hasn't been sent from your site!
             // Be careful! Do not use it.
-            return;
-        }
+        //     return;
+        // }
       });
     </script>
 
