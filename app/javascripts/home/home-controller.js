@@ -9,14 +9,16 @@
 
   function Home($scope, $window, UserService, PictureService) {
     const vm = this;
-    vm.data = $window.data;
+
+    vm.getData = function() {
+      PictureService.addPicture($window.data).then((data) => {
+        console.log('in home contr ' + data);
+      });
+    }
 
     UserService.getCurrent().then(user => {
       vm.user = user[0];
     });
 
-    PictureService.addPicture(vm.data).then((data) => {
-      console.log('in home cont ' + data);
-    });
   }
 })();
