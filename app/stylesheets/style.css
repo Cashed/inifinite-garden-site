@@ -151,11 +151,12 @@ footer {
 }
 
 .entry-pic {
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 	margin: 0 auto;
 	margin-top: 35px;
 	width: 80%;
+	height: 80%;
 	padding: 0;
 }
 

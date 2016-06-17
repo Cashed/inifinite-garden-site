@@ -31,7 +31,7 @@
           date: '06/13/2016'
         }];
 
-        addPage(flipbook, entries[0]);
+        // addPage(flipbook, entries[0]);
       },
       controller: function($scope) {
         const vm = this;
