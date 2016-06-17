@@ -8,11 +8,11 @@
   PictureService.$inject = ['$http', '$q'];
 
   function PictureService($http, $q) {
-    const service = {};
+    const window.service = {};
 
     service.getAll = getAllByUser;
     service.getById = getById;
-    service.addPicture = window.addPicture;
+    service.addPicture = addPicture;
     service.updatePicture = updatePicture;
     service.deletePicture = deletePicture;
 
