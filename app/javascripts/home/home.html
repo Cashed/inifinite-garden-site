@@ -10,7 +10,7 @@
         <p id="name">{{ home.user.username }}</p>
         <p>Account</p>
       </div>
-      <div class='user-avatar col-md-1' ng-click='home.getData()'>
+      <div class='user-avatar col-md-1'>
         <img ng-src='{{ home.user.avatar }}' alt='user avatar picture'>
       </div>
     </div>
@@ -19,11 +19,11 @@
   <section class='main container-fluid'>
     <div class='row'>
       <div class='game-view col-md-7'>
-        <iframe id='game-frame' src='https://s3-us-west-2.amazonaws.com/infinite-garden-host/index.html' height='90%', width='100%'></iframe>
+        <!-- <iframe id='game-frame' src='https://s3-us-west-2.amazonaws.com/infinite-garden-host/index.html' height='90%', width='100%'></iframe> -->
       </div>
       <div class='communication-content col-md-5' style='padding: 0;'>
         <bulletin class='row' user='home.user'></bulletin>
-        <journal class='row' user='home.user'></journal>
+        <journal class='row angular-hook' user='home.user'></journal>
       </div>
     </div>
   </section>

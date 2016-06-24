@@ -29,18 +29,10 @@
     <base href='/'/>
   </head>
   <body>
-    <script type='text/javascript'>
-      var data = {};
-
-      window.addEventListener('message', function(event) {
-        console.log(event.data);
-        data = event.data;
-
-      });
-    </script>
 
     <!-- *********** view ************ -->
     <div ui-view ></div>
+
     <script src='app/javascripts/webGLRelay.js'></script>
     <script src='app/javascripts/scripts/turn.js'></script>
     <script src='app/javascripts/scripts/socket.io.js'></script>

@@ -5,7 +5,7 @@
     .module('journal', [])
     .directive('journal', journal);
 
-  function journal() {
+  function journal($window) {
     return {
       restrict: 'E',
       scope: {
@@ -14,6 +14,19 @@
       replace: true,
       templateUrl: 'app/javascripts/journal/journal.html',
       link: function(scope, element, attrs) {
+        element[0].dataUpdate = function() {
+          scope.$digest();
+        }
+
+        scope.$watch(
+          function() { return $window.data; },
+          function(newVal, oldVal) {
+            if (newVal !== oldVal) {
+              var newPic = $window.data.link;
+              addPage(flipbook, newPic);
+            }
+          }, true);
+
         var flipbook = $('#flipbook');
 
         flipbook.turn({
@@ -30,24 +43,18 @@
           description: '',
           date: '06/13/2016'
         }];
-
-        // addPage(flipbook, entries[0]);
       },
-      controller: function($scope) {
+      controller: function($rootScope, $scope, $window) {
         const vm = this;
-
-        vm.entryDetails = () => {
-          console.log('clicked');
-        }
       },
       controllerAs: 'journal'
     }
   }
 
-  function addPage(flipbook, entry) {
+  function addPage(flipbook, newPic) {
     // build page
     var newEntry = $('<div class="journal-entry">');
-    var picWrapper = $(`<div class="entry-pic" style="background-image: url(${entry.picture})">`);
+    var picWrapper = $(`<div class="entry-pic" style="background-image: url(${newPic})">`);
     var picture = $('<img src="app/images/polaroid-frame.png" alt="journal screenshot">');
 
     newEntry.on('click', function() {
@@ -58,14 +65,14 @@
     newEntry.append(picWrapper);
 
     // add page to flipbook
-    var pageCount = flipbook.turn('pages') + 1;
+    var pageCount = flipbook.turn('pages') - 1;
     var positionOfAddition = pageCount;
     var page = $(newEntry);
     var backPage = $('<div class="hard inside-cover">');
 
     flipbook.turn('addPage', page, positionOfAddition);
     flipbook.turn('addPage', backPage, positionOfAddition + 1);
-    pageCount++;
+    pageCount+= 2;
     flipbook.turn('pages', pageCount);
   }
 })();

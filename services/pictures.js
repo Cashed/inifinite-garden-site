@@ -24,7 +24,7 @@ picture.getAllbyUser = (userId, callback) => {
 
 picture.addPic = (picture, callback) => {
   console.log(picture);
-  picture().insert({ link: picture.link }, '*').then((newPic) => {
+  picture().insert({ link: picture.link, author_id: picture.author }, '*').then((newPic) => {
     callback(undefined, newPic);
   })
   .catch((error) => {
@@ -51,3 +51,5 @@ picture.deletePic = (id, callback) => {
     callback(error);
   });
 }
+
+module.exports = picture;

@@ -18,9 +18,9 @@
 
     return service;
 
-    function getAllByUser(id) {
+    function getAllByUser() {
       return $http
-        .get('/api/pictures/user/' + id)
+        .get('/api/pictures/user')
         .then(handleSuccess, handleError);
     }
 
@@ -56,7 +56,7 @@
     }
 
     function handleError(res) {
-      return $q.reject(res.data);
+      console.log(res.data);
     }
   }
 })();

@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Picture = require('../../services/pictures');
+// const Picture = require('../../services/pictures'); not working for some reason...tbc
+const knex = require('../../db/knex');
+
+function picture() {
+  return knex('pictures');
+}
 
 // routes
 router.get('/pic/:id', getById);
-router.get('/user/:id', getAllbyUser);
+router.get('/user', getAllbyUser);
 router.post('/add', addPicture);
 router.put('/update', updatePicture);
 router.delete('/delete', deletePicture);
@@ -12,63 +17,48 @@ router.delete('/delete', deletePicture);
 module.exports = router;
 
 function getById(req, res, next) {
-  Picture.getById(req.params.id, (error, pic) => {
-    if (error) {
-      res.status(400).send(error);
-    }
-    else if (pic) {
-      res.send(pic);
-    }
-    else {
-      res.sendStatus(404);
-    }
+  picture().where({ id: req.params.id }).then((picture) => {
+    res.send(picture);
+  })
+  .catch((error) => {
+    res.status(400).send(error);
   });
 }
 
 function getAllbyUser(req, res, next) {
-  Picture.getAllbyUser(req.params.id, (error, pics) => {
-    if (error) {
-      res.status(400).send(error);
-    }
-    else if (pics) {
-      res.send(pics);
-    }
-    else {
-      res.sendStatus(404);
-    }
+  picture().where({ author_id: req.user.sub }).then((pictures) => {
+    res.send(pictures);
+  })
+  .catch((error) => {
+    res.status(400).send(error);
   });
 }
 
 function addPicture(req, res, next) {
-  console.log(req.body + ' ' + req.user.sub);
-  Picture.addPic(req.body, (error, newPic) => {
-    if (error) {
-      res.status(400).send(error);
-    }
-    else {
-      res.send(newPic);
-    }
+  picture().insert({ link: req.body.link, author_id: req.user.sub }, '*').then((newPic) => {
+    res.send(newPic);
+  })
+  .catch((error) => {
+    res.status(400).send(error);
   });
 }
 
 function updatePicture(req, res, next) {
-  Picture.updatePic(req.body, (error, updatePic) => {
-    if (error) {
-      res.status(400).send(error);
-    }
-    else {
+  picture()
+    .where({ id: req.body.id })
+    .update(req.body, '*').then((updatePic) => {
       res.send(updatePic);
-    }
-  });
+    })
+    .catch((error) => {
+      cres.status(400).send(error);
+    });
 }
 
 function deletePicture(req, res, next) {
-  Picture.deletePic(req.params.id, (error, row) => {
-    if (error) {
-      res.status(400).send(error);
-    }
-    else {
-      res.send(row);
-    }
+  picture().where({ id: req.params.id }).del().then((row) => {
+    res.send(row);
+  })
+  .catch((error) => {
+    res.status(400).send(error);
   });
 }
