@@ -31,7 +31,6 @@
     }
 
     function addPicture(picture) {
-      console.log('i got called ' + picture);
       return $http
         .post('/api/pictures/add', picture)
         .then(handleSuccess, handleError);
