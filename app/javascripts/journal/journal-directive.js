@@ -5,7 +5,7 @@
     .module('journal', [])
     .directive('journal', journal);
 
-  function journal($window) {
+  function journal($window, PictureService) {
     return {
       restrict: 'E',
       scope: {
@@ -14,19 +14,6 @@
       replace: true,
       templateUrl: 'app/javascripts/journal/journal.html',
       link: function(scope, element, attrs) {
-        element[0].dataUpdate = function() {
-          scope.$digest();
-        }
-
-        scope.$watch(
-          function() { return $window.data; },
-          function(newVal, oldVal) {
-            if (newVal !== oldVal) {
-              var newPic = $window.data.link;
-              addPage(flipbook, newPic);
-            }
-          }, true);
-
         var flipbook = $('#flipbook');
 
         flipbook.turn({
@@ -37,17 +24,36 @@
 
         flipbook.turn('peel', 'br');
 
-        var entries = [{
-          picture: 'https://s-media-cache-ak0.pinimg.com/736x/07/f3/a5/07f3a5acaa4fa8a0b0194c233e4c1c09.jpg',
-          title: '',
-          description: '',
-          date: '06/13/2016'
-        }];
-      },
-      controller: function($rootScope, $scope, $window) {
-        const vm = this;
-      },
-      controllerAs: 'journal'
+        loadUserScreenshots();
+        listenForScreenshots();
+
+        function loadUserScreenshots() {
+          PictureService.getAll().then(function(pics) {
+            for (var i = 0; i < pics.length; i++) {
+              addPage(flipbook, pics[i].link);
+            }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+        }
+
+        function listenForScreenshots() {
+          element[0].dataUpdate = function() {
+            scope.$digest();
+          }
+
+          scope.$watch(
+            function() { return $window.data; },
+            function(newVal, oldVal) {
+              if (newVal !== oldVal) {
+                var newPic = $window.data.link;
+                PictureService.addPicture($window.data);
+                addPage(flipbook, newPic);
+              }
+            }, true);
+        }
+      }
     }
   }
 
@@ -75,4 +81,5 @@
     pageCount+= 2;
     flipbook.turn('pages', pageCount);
   }
+
 })();
