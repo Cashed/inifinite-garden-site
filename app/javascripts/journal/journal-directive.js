@@ -48,7 +48,7 @@
             function(newVal, oldVal) {
               if (newVal !== oldVal) {
                 PictureService.addPicture($window.data).then(function(newPic) {
-                  addPage(flipbook, newPic);
+                  addPage(flipbook, newPic[0]);
                 });
               }
             }, true);
