@@ -1,4 +1,33 @@
 <section>
+  <div class="modal fade" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="mean-pots-information">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <!-- <div contenteditable="true" class="modal-title" id="mean-pots-label" placeholder='Title'>{{ journal.pictureDetails.title }}</div> -->
+        </div>
+        <div class="modal-body">
+          <div class='row'>
+            <div class='col-md-10 col-md-offset-1'>
+              <img class='screenshot' ng-src="{{ journal.pictureDetails.link }}"/>
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-md-5 col-md-offset-1'>
+              <div>Created: &nbsp {{ journal.pictureDetails.date }}</div>
+            </div>
+          </div>
+          <!-- <div class='row'>
+            <div class='col-md-12 pic-desc'>
+              <div contenteditable="false" class="modal-title" id="mean-pots-label" placeholder='Description...'></div>
+            </div>
+          </div> -->
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="flipbook">
     <div class="hard cover"></div>
     <div class="hard inside-cover"></div>
