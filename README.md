@@ -5,6 +5,7 @@ Infinite Garden is a collaborative project which seeks to give visitors a refuge
 This repo manages the full stack website that the Unity project is hosted on.  
 
 Live site: [infinite garden site](https://infinite-garden.herokuapp.com)
+
 Link to Unity repo: [infinite garden Unity project](https://github.com/derzorngottes/infinite_garden)
 
 ## Tech Stack
